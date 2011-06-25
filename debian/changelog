@@ -1,3 +1,13 @@
+bible-kjv (4.25) unstable; urgency=low
+
+  * correct text of Psa50:17 (closes: #623629)
+  * correct case of Psa70:1 (closes: #630153)
+  * add LDADD (Ubuntu patch from Andreas Moog) (closes: #631606)
+  * make bible-kjv-text only Recommend bible-kjv rather than depending on
+    it, to remove the circular dependency (closes: #626321)
+
+ -- Matthew Vernon <matthew@debian.org>  Sat, 25 Jun 2011 13:28:02 +0100
+
 bible-kjv (4.24) unstable; urgency=low
 
   * change build-depends to libreadline-dev (closes: #553733)
