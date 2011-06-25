@@ -1,0 +1,107 @@
+#!/usr/bin/make -f
+# Sample debian.rules file - for GNU Hello (1.3).
+# Copyright 1994,1995 by Ian Jackson.
+# I hereby give you perpetual unlimited permission to copy,
+# modify and relicense this file, provided that you do not remove
+# my name from the file itself.  (I assert my moral right of
+# paternity under the Copyright, Designs and Patents Act 1988.)
+# This file may have to be extensively modified
+
+# There used to be `source' and `diff' targets in this file, and many
+# packages also had `changes' and `dist' targets.  These functions
+# have been taken over by dpkg-source, dpkg-genchanges and
+# dpkg-buildpackage in a package-independent way, and so these targets
+# are obsolete.
+
+package=bible-kjv
+
+build:
+	$(checkdir)
+	$(MAKE) all
+	cd debian && gcc -g -O2 -o randverse randverse.c
+	touch build
+
+clean:
+	$(checkdir)
+	-rm -f build
+	-$(MAKE) clean
+	-rm -f `find . -name "*~"`
+	-rm -rf debian/tmp debian/files* bible debian/bible-kjv-text \
+		debian/randverse debian/substvars randverse
+
+binary-indep:	checkroot build
+	$(checkdir)
+	-rm -fr debian/tmp debian/bible-kjv-text/
+	install -d debian/tmp/usr
+	make install DEST=debian/tmp/usr
+	install -d debian/bible-kjv-text debian/bible-kjv-text/DEBIAN
+	install -m 755 debian/bible-kjv-text.postinst debian/bible-kjv-text/DEBIAN/postinst
+	install -m 755 debian/bible-kjv-text.prerm debian/bible-kjv-text/DEBIAN/prerm
+	cd debian/bible-kjv-text && install -d -m 775 `cat ../bible-kjv-text.dirs` 
+	cp debian/copyright debian/bible-kjv-text/usr/share/doc/bible-kjv-text
+	cp debian/changelog debian/bible-kjv-text/usr/share/doc/bible-kjv-text/changelog
+	cp debian/text.readme debian/bible-kjv-text/usr/share/doc/bible-kjv-text/Debian.README
+	gzip --best debian/bible-kjv-text/usr/share/doc/bible-kjv-text/Debian.README
+	gzip --best debian/bible-kjv-text/usr/share/doc/bible-kjv-text/changelog
+	cd debian/tmp && \
+		mv `cat ../bible-kjv-text.files` ../bible-kjv-text/usr/lib
+	dpkg-gencontrol -pbible-kjv-text -Pdebian/bible-kjv-text -isp
+	chown -R root.root debian/bible-kjv-text
+	chmod -R go=rX debian/bible-kjv-text
+	dpkg --build debian/bible-kjv-text ..
+
+binary-arch:	checkroot build
+	$(checkdir)
+	-rm -rf debian/tmp debian/bible-kjv-text/
+	install -d debian/tmp debian/tmp/DEBIAN
+	install -m 755 debian/postinst debian/tmp/DEBIAN
+	install -m 755 debian/prerm debian/tmp/DEBIAN
+	install -m 755 debian/postrm debian/tmp/DEBIAN
+	install -d debian/tmp/usr/share/doc/$(package)
+	install -d debian/tmp/usr/share/man/man1
+	install -d debian/tmp/usr/bin debian/tmp/usr/lib
+	make install DEST=debian/tmp/usr
+	#Is nostrip set in DEB_BUILD_OPTIONS?
+	case "$$DEB_BUILD_OPTIONS" in \
+	*nostrip*)\
+	install -m 755 debian/randverse debian/tmp/usr/bin && \
+	install -m 755 bible debian/tmp/usr/bin && \
+	install -m 644 debian/randverse.1 debian/tmp/usr/share/man/man1 \
+	;; \
+	*) \
+	install -s -m 755 debian/randverse debian/tmp/usr/bin && \
+	install -s -m 755 bible debian/tmp/usr/bin && \
+	install -m 644 debian/randverse.1 debian/tmp/usr/share/man/man1 \
+	;; \
+	esac
+	cp debian/notes debian/copyright debian/tmp/usr/share/doc/$(package)/.
+	cp debian/changelog debian/tmp/usr/share/doc/$(package)/changelog
+	cp README* debian/README* debian/tmp/usr/share/doc/$(package)
+	install -m 755 -d debian/tmp/usr/lib/menu
+	install -m 644 debian/menu     debian/tmp/usr/lib/menu/$(package)
+	chmod a+r debian/tmp/usr/share/doc/$(package)/*
+	gzip -9 debian/tmp/usr/share/doc/$(package)/*
+	gunzip -9 debian/tmp/usr/share/doc/$(package)/copyright.gz
+	gzip -9 debian/tmp/usr/share/man/man1/*
+	cd debian/tmp && \
+		rm `cat ../bible-kjv-text.files`
+	dpkg-shlibdeps bible
+	dpkg-gencontrol -pbible-kjv -Pdebian/tmp -isp
+	chown -R root.root debian/tmp
+	chmod -R g-ws debian/tmp
+	dpkg --build debian/tmp ..
+
+binary: binary-indep binary-arch
+
+define checkdir
+	test -f bible.c -a -f debian/rules
+endef
+
+source diff:
+	@echo >&2 'source and diff are obsolete - use dpkg-source -b'; false
+
+checkroot:
+	$(checkdir)
+	test root = "`whoami`"
+
+.PHONY: binary binary-arch binary-indep clean checkroot
