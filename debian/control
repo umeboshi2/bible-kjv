@@ -21,7 +21,7 @@ Description: King James Version of the Bible: user interface program.
 
 Package: bible-kjv-text
 Architecture: all
-Depends: bible-kjv
+Recommends: bible-kjv
 Conflicts: bible-kjv (<< 4.00-5)
 Description: King James Version of the Bible - text and concordance
  This package contains the King James Version of the Bible (translated in
