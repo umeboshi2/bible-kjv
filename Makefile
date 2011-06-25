@@ -89,7 +89,8 @@ DESTMAN1      = $(DESTMAN)/man1
 # I use environment variables for these...
 #CFLAGS	      = -g
 CFLAGS	      = -Wall -Wformat -Werror -Wshadow -W -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wcast-align -Wcast-qual -Wbad-function-cast -Wpointer-arith -g2 -ggdb -DDESTLIB=\"$(DESTLIB)\"
-LDFLAGS       = -lreadline
+LDFLAGS       = 
+LDADD         = -lreadline
 
 # release directories.  Nobody should care about this but me
 FTPHOME	      = /mnt/ftp
@@ -201,7 +202,7 @@ TOOLSDIST     = $(TOOLSRCS) \
 ###############################################################################
 $(PROGRAM):	$(PROGOBJS)
 		@echo "Linking $@ ..."
-		@$(LD) $(LDFLAGS) $(PROGOBJS) -o $@
+		@$(LD) $(LDFLAGS) $(PROGOBJS) $(LDADD) -o $@
 		@echo "done"
 
 
