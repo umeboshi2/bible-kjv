@@ -1082,9 +1082,9 @@ ref_t brl_printverse(char *vs,int pretty,int lwidth,FILE *outf)
 		    strcpy(dstp, srcp);
 		}
 		/* now print out the verse */
-		printf( vb2 );
+		printf( "%s", vb2 );
 		if (outf != NULL)
-		    fprintf( outf, vb2 );
+		    fprintf( outf, "%s", vb2 );
 	    } /* for */
 	} /* while */
     } else {
