@@ -94,7 +94,7 @@
 int main(int argc,char **argv)
 {
     FILE	*fp;
-    long	t;
+    time_t	t;
     long	cur_line;
     long	offset;
     char	textbuff[TBSIZE];
