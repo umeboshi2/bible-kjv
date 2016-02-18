@@ -1,0 +1,33 @@
+        Bible Retrieval System 
+        Chip Chapin, Hewlett Packard Company
+        Initial release, September 5, 1989
+        Last Updated: April 26, 1993
+
+This file is provided for unrestricted use provided that this
+legend is included on all tape media and as a part of the
+software program in whole or part.  Users may copy, modify or
+distribute this file at will.
+            -- Chip Chapin, September 4, 1989
+
+Original site: ftp.funet.fi:/pub/doc/religion/christian/Bible/unix.
+
+Ported to Linux by Christoph Lameter, Dec 13, 1994
+Linux Port available from sunsite.unc.edu:/pub/Linux/apps/religion/brs.4.00.l1.tar.gz
+
+Debianized Package Released September 20, 1996 by
+Rev. Christoph Lameter (Master of Divinity, Master of Science)
+
+Substantial work on the code by Matthew Vernon <matthew@debian.org>
+Copyright 2003-2005. Its licence is GPL version 2.
+
+The copyright for the King James Version text of the Bible is expired since
+the  translation was done in 1611 under King James the first of Great
+Britain.
+
+                        =========================
+
+randverse is copyright of Oliver Elphick <Oliver.Elphick@lfix.co.uk>, 1997.
+Its licence is GPL version 2. Its original source is this package.
+
+The text of the GPL can be found in /usr/share/common-licenses/GPL.
+

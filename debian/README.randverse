@@ -1,0 +1,13 @@
+randverse displays a verse taken at random from the bible; if you run the
+program twice, the chances are 1 in 31096 against getting the same verse a
+second time.
+
+The chances are equalised across all the bible.  My first try selected
+a book at random, then a chapter and then a verse.  Then I realised
+that this biased the selection in favour of small books like Philemon
+and against large ones like Jeremiah.
+
+It would be nice if this program understood context and could supply
+it, where a single verse is only part of a sentence, for example.
+
+Copyright (c) Oliver Elphick <Oliver.Elphick@lfix.co.uk> 1997

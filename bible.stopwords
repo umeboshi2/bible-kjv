@@ -1,0 +1,149 @@
+###############################################################################
+#
+# File:         bible.stopwords
+# RCS:          $Header: /home/matthew/cvs/bible-kjv-4.10/bible.stopwords,v 2.0 2003/01/08 15:29:52 matthew Exp $
+# Description:  List of words to leave OUT of concordance.
+# Author:       Chris Eich
+# Created:      Wed Dec 23 14:57:35 1992
+# Modified:     Wed Dec 23 15:52:51 1992 (Chip Chapin) chip@hpclbis
+# Language:     N/A
+# Package:      Bible Retrieval System
+# Status:       Experimental (Do Not Distribute)
+#
+###############################################################################
+#
+# Revisions:
+#
+# Wed Dec 23 15:52:28 1992 (Chip Chapin) chip@hpclbis
+#  Received from Chris Eich.
+###############################################################################
+
+# Bible stop word file.  Order is not important.  This line is a comment.
+#
+# Only the first "word" ([a-z]+ in regexp syntax) on a line is taken as
+# a stop word; the rest of the line is ignored.
+
+# The "common word" list in Strong's would probably be best, but my copy
+# is at home.
+
+# This list is taken from LaserROM/UX's list.  Note that "however" does
+# not appear in the KJV.  Other words in this list are relatively rare
+# ("since" is 927th with only 70 occurrences).
+a
+after
+also
+an
+and
+are
+as
+at
+be
+because
+before
+between
+but
+by
+for
+from
+however
+if
+in
+into
+is
+not
+of
+on
+or
+other
+out
+since
+such
+than
+that
+the
+there
+these
+this
+those
+to
+under
+upon
+when
+where
+whether
+which
+with
+within
+without
+you
+
+# Other words in KJV top 102 (up to "or") which are not included above.
+# Remember to remove the count if you uncomment any of these to make
+# them stop words.
+# he	10420
+# shall	9837
+# unto	8998
+# i	8853
+# his	8474
+# lord	7964
+# they	7376
+# him	6661
+# them	6429
+# it	6129
+# all	5620
+# thou	5474
+# thy	4603
+# was	4521
+# god	4472
+# my	4367
+# me	4096
+# said	3999
+# ye	3983
+# their	3932
+# have	3905
+# will	3837
+# thee	3827
+# were	2773
+# man	2736
+# israel	2575
+# king	2540
+# son	2392
+# up	2380
+# hath	2263
+# then	2168
+# people	2143
+# came	2093
+# had	2028
+# house	2024
+# her	1994
+# come	1971
+# one	1969
+# we	1844
+# children	1821
+# your	1776
+# s	1766
+# day	1743
+# land	1717
+# so	1689
+# men	1676
+# against	1667
+# shalt	1617
+# let	1511
+# go	1492
+# hand	1468
+# us	1451
+# saying	1445
+# made	1406
+# went	1400
+# even	1393
+# no	1393
+# do	1368
+# now	1356
+# behold	1326
+# saith	1262
+# therefore	1237
+# every	1236
+# our	1166
+# things	1162
+# father	1126
+# down	1125

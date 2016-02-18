@@ -1,0 +1,16 @@
+#!/bin/sh
+
+if [ "$1" = "configure" ]
+then
+
+        if [ -d /usr/doc -a -h /usr/doc/bible-kjv -a -d /usr/share/doc/bible-kjv ]; then
+                rm -f /usr/doc/bible-kjv
+        fi
+
+	if test -x /usr/bin/update-menus
+	then
+		update-menus
+	fi
+fi
+
+exit 0

@@ -1,0 +1,119 @@
+#!/bin/sh
+###############################################################################
+#
+# File:         makeconcordance
+# RCS:          $Header: /home/matthew/cvs/bible-kjv-4.10/makeconcordance,v 2.0 2003/01/08 15:29:52 matthew Exp $
+# Description:  Create concordance database
+# Author:       Chip Chapin, Hewlett-Packard Company
+# Created:      Tue Sep 19 18:18:00 1989
+# Modified:     Thu Apr 22 14:31:46 1993 (Chip Chapin) chip@hpclbis
+# Language:     Bourne shell
+# Package:      Text Storage Library (Bible Retrieval System)
+# Status:       Experimental (Do Not Distribute)
+#
+###############################################################################
+#
+# Revisions:
+#
+# Thu Apr 22 14:31:18 1993 (Chip Chapin) chip@hpclbis
+#  Revised tr usage to work with either Ultrix or HP-UX.
+#  Revert to sh, instead of ksh, for greater portability.
+# Wed Dec 23 13:41:19 1992 (Chip Chapin) chip@hpclbis
+#  Added time/space warning notice.
+# Tue Dec 22 09:28:24 1992 (Chip Chapin) chip@hpclbis
+#  Revised to use lots of pipes to save lots of disk space.
+# Mon Dec 21 19:25:32 1992 (Chip Chapin) chip@hpclbis
+#  Tidy up for release with BRS 2.0.
+###############################################################################
+
+# Setting PATH ensures that the bible program will be found.
+PATH=".:$PATH"
+
+PROG=bible
+BLANKS="                                                                       "
+
+echo
+echo "*********************************************************************"
+echo "Notice: This script may take a long time, and require 8-10mb of disk."
+echo "*********************************************************************"
+echo
+
+#
+# commands for building word index
+#
+# 1. Generate plain text file, one "record" (e.g. bible verse) per line.
+# 2. Cut off the record reference that starts each line.
+# 3. Translate ALL non-alpha characters (EXCEPT new-line) into blanks.
+# 4. Translate all upper-case chars into lower-case.
+# 5. Create list containing each occurrence of each word.
+# 6. Sort the list and eliminate dups.
+# 7. Create "rawconcordance", listing the lines where each word occurs.
+#
+### NOTICE: the long string of blanks in the first tr(1) seems to be the 
+# best way to deal with incompatibilities between BSD and POSIX tr.
+$PROG -f gen1:1-rev99:99 | 
+    cut -f2- -d" " |
+    tr -cs "[A-Z][a-z]\012" "$BLANKS $BLANKS" |
+    tr "[A-Z]" "[a-z]"  |
+    awk '
+      # Create a list of each occurrence of each word in the
+      # text.  Format:  "word  line-no."
+      # Note that there are 12545 different words in KJV bible.
+      {for (i=1;i<=NF;i++) printf "%s %05d\n", $i, NR}
+      ' - |
+    # Gather all references to a word together,
+    # and eliminate multiple refs for the same word occurring several
+    # times in the same record.
+    sort -uy - |
+    awk '
+      # Create raw concordance: each word that occurs in the text on a 
+      # single line, followed by a blank-separated list of line numbers 
+      # on which that word occurred.
+      # As a by-product, we [can] also create a wordcounts file, which
+      # gives the number of lines in which each word occurs.  NOTE that,
+      # because we used -u in the sort above, we are not counting cases 
+      # where the same word is used several times in the same record.
+      NR == 1 {word = $1; printf "%s %s", $1, $2; next}
+      
+      {  
+          if ($1 == word) {
+              printf " %s", $2;
+	      wordcount++;
+	  } 
+	  else {
+	      word = $1
+	      wordcount = 1;
+	      printf "\n%s %s", $1, $2;
+	  }
+      }
+      
+      END {
+          printf "\n";
+      }
+      ' - > "$PROG".rawconcordance
+
+# Next ... create a binary form of the raw concordance.
+# This is handled by "makeconcfile", a program invoked from the
+# BRS makefile.
+
+# so we're all done now.
+
+# Interesting statistic: 89198 chars in all the words in the Bible,
+#			 617371 word-verse occurrances
+# from...
+#	awk '{chars += length($1); counts += $2}
+#		END {print "chars=" chars " counts=" counts}' bible.wordcounts
+
+# end
+
+###############################################################################
+# Gnu Emacs variables...
+#
+#   Local Variables:
+#   mode:   	    	    	        sh
+#   eval:   	    	    	        (auto-fill-mode 0)
+#   default-header-comment-character:	?#
+#   header-prefix:			"#!/bin/ksh"
+#   header-suffix:			"#"
+#   header-comment-character:		?#
+#   end:

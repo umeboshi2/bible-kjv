@@ -1,0 +1,143 @@
+###############################################################################
+#
+# File:         bible.pkg
+# RCS:          $Header: /home/matthew/cvs/bible-kjv-4.10/bible.pkg,v 2.0 2003/01/08 15:29:51 matthew Exp $
+# Description:  Ninstall package for Bible Retrieval System
+# Author:       Chip Chapin, Hewlett Packard Company
+# Created:      Tue Sep  5 19:52:06 1989
+# Modified:     Tue Apr 27 08:55:08 1993 (Chip Chapin) chip@hpclbis
+# Language:     ninstall
+# Package:      Bible Retrieval System
+# Status:       Experimental (Do Not Distribute)
+#
+###############################################################################
+#
+# Revisions:
+#
+# Tue Apr 27 08:49:54 1993 (Chip Chapin) chip@hpclbis
+#  Fix error.
+# Mon Apr 26 11:35:15 1993 (Chip Chapin) chip@hpclbis
+#  Restructured source file distribution.
+# Mon Dec 21 19:07:23 1992 (Chip Chapin) chip@hpclbis
+#  Revised for release 2.0, supporting concordance files.
+###############################################################################
+# $Log: bible.pkg,v $
+# Revision 2.0  2003/01/08 15:29:51  matthew
+# versions collected from the net
+#
+# Revision 1.12  93/04/26  12:23:58  12:23:58  chip (Chip Chapin)
+# Release 4.00
+# Public release of portable datafile version.
+# 
+# Revision 1.11  93/04/23  13:08:15  13:08:15  chip (Chip Chapin)
+# PORTABILITY RELEASE
+# This version supports portable data files, usable on machines with
+# differing native byte-orders.
+# Also, this version compiles and runs on non-HPUX systems.  It has been
+# tested on SunOS 4.? and ULTRIX 4.?, using SPARC and DEC 3100 hardware
+# respectively.  Note that the data file format has rolled again.
+# 
+# Revision 1.10  93/01/05  11:02:28  11:02:28  chip (Chip Chapin)
+# Release 2.2a: Fix command bug.
+# 
+# Revision 1.9  93/01/05  10:49:20  10:49:20  chip (Chip Chapin)
+# Release 2.2, Added ?w command and line formatting to ?l output.
+# 
+# Revision 1.8  93/01/04  16:21:06  16:21:06  chip (Chip Chapin)
+# Release 2.1, implements ?in and ?or commands.
+# 
+# Revision 1.7  92/12/24  11:38:17  11:38:17  chip (Chip Chapin)
+# Minor release 2.04a, fixes certain compile warnings.
+# 
+# Revision 1.6  92/12/22  11:29:03  11:29:03  chip (Chip Chapin)
+# Minor release 2.01 -- fix a couple of bugs.
+# 
+# Revision 1.5  92/12/21  20:02:11  20:02:11  chip (Chip Chapin)
+# Release 2.0.  This release adds the concordance, and some small fixes.
+# 
+# Revision 1.4  89/10/05  12:20:16  12:20:16  chip (Chip Chapin)
+# Added "sourceonly" subpackage.
+# 
+# Revision 1.3  89/10/03  12:11:18  12:11:18  chip (Chip Chapin)
+# Oops!  Put bible.data back in /usr/local/lib.
+# Also, use -S instead of -D when installing bible.data.
+# 
+# Revision 1.2  89/10/02  23:33:22  23:33:22  chip (Chip Chapin)
+# 
+# Revision 1.1  89/10/02  23:08:38  23:08:38  chip (Chip Chapin)
+# Initial revision
+#
+###############################################################################
+
+
+begin bible
+  directory /mnt/ftp/pub/bible ;
+  comment "BRS: Bible Retrieval System [-O, v4.00 930426, 2.8MB]";
+  exclude src tools-src local-data rawdata ;
+
+  begin manual
+    comment "man page, in /usr/local/man/man1.Z" ;
+
+    owner bin;
+    group bin;
+    install -D -m 0644 bible.1.Z /usr/local/man/man1.Z/bible.1 ;
+  end
+
+  begin bin (machine ("9000/[34]*"))
+    comment "s[34]00 executable, in /usr/local/bin" ;
+
+    owner bin;
+    group bin;
+    install -D -m 0755 bible.hp-s300 /usr/local/bin/bible ;
+  end
+
+  begin bin (machine ("9000/[78]*"))
+    comment "s[78]00 executable, in /usr/local/bin" ;
+
+    owner bin;
+    group bin;
+    install -D -m 0755 bible.hp-s800 /usr/local/bin/bible ;
+  end
+
+  begin data
+    comment "Data files, in /usr/local/lib" ;
+
+    owner bin;
+    group bin;
+    install -S -m 0644 bible.data bible.data.conc /usr/local/lib/ ;
+  end
+
+  begin src
+    comment "BRS program sources, (no data) in current dir [v4.00 930426,200KB]";
+
+    owner *;
+    group *;
+    install -D -m 0644 bible.tar.Z bible.tar.Z ;
+  end
+  
+  begin tools-src
+    comment "BRS tools sources, in current directory [v4.00 930426, 45KB]" ;
+
+    owner *;
+    group *;
+    install -D -m 0644 bible-tools.tar.Z bible-tools.tar.Z ;
+  end
+  
+  begin local-data
+    comment "Data files, in current directory [v4.00 930426 2.6MB]" ;
+
+    owner *;
+    group *;
+    install -S -m 0644 bible.data bible.data ;
+    install -S -m 0644 bible.data.conc bible.data.conc ;
+  end
+
+  begin rawdata
+    comment "Raw KJV text, (compressed) in current dir [v4.00 930426, 1.6MB]" ;
+
+    owner *;
+    group *;
+    install -D -m 0644 bible.rawtext.Z bible.rawtext.Z ;
+  end
+  
+end # bible.pkg

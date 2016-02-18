@@ -1,0 +1,4 @@
+This package contains compressed text and concordance for the King James
+translation of the Bible (dated 1611).  It requires the bible-kjv package
+to read the text.
+

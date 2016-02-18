@@ -1,0 +1,252 @@
+bible-kjv (4.28) unstable; urgency=low
+
+  * patch from Adam Borowski to fix FTBFS on x32 (Closes: #700012)
+
+ -- Matthew Vernon <matthew@debian.org>  Thu, 18 Feb 2016 18:34:45 +0000
+
+bible-kjv (4.27) unstable; urgency=low
+
+  * Make build reproducible (patch from Chris Lamb) (Closes: #777294)
+
+ -- Matthew Vernon <matthew@debian.org>  Sun, 17 May 2015 13:44:48 +0100
+
+bible-kjv (4.26) unstable; urgency=low
+
+  * add format strings to two *printf statements, patch from Andreas Moog
+    (Closes: #631685)
+
+ -- Matthew Vernon <matthew@debian.org>  Mon, 04 Jul 2011 17:50:50 +0100
+
+bible-kjv (4.25) unstable; urgency=low
+
+  * correct text of Psa50:17 (closes: #623629)
+  * correct case of Psa70:1 (closes: #630153)
+  * add LDADD (Ubuntu patch from Andreas Moog) (closes: #631606)
+  * make bible-kjv-text only Recommend bible-kjv rather than depending on
+    it, to remove the circular dependency (closes: #626321)
+
+ -- Matthew Vernon <matthew@debian.org>  Sat, 25 Jun 2011 13:28:02 +0100
+
+bible-kjv (4.24) unstable; urgency=low
+
+  * change build-depends to libreadline-dev (closes: #553733)
+
+ -- Matthew Vernon <matthew@debian.org>  Sat, 28 Nov 2009 13:57:13 +0000
+
+bible-kjv (4.23) unstable; urgency=low
+
+  * Remove obsolete Local variables section
+  * #include <string.h> in bible.c - fixes Mac OS compilation failure
+    (closes: #439735)
+
+ -- Matthew Vernon <matthew@debian.org>  Tue, 11 Mar 2008 20:50:03 +0000
+
+bible-kjv (4.22) unstable; urgency=low
+
+  * Replace old sort +1 syntax with POSIX sort -k 2 (closes: #464267)
+  * deal with nostrip DEB_BUILD_OPTION in debian/rules (closes: #436581)
+
+ -- Matthew Vernon <matthew@debian.org>  Thu,  7 Feb 2008 20:50:11 +0000
+
+bible-kjv (4.21) unstable; urgency=low
+  
+  * Note to NMUers - please number your versions -1,-2 etc...
+  * fix capitalisation of Psa 92:1 (Closes: #458290)
+  * Improve randverse(1) (thanks to Kevin Ryde) (Closes: #50126)
+  
+ -- Matthew Vernon <matthew@debian.org>  Tue, 15 Jan 2008 21:18:45 +0000
+  
+bible-kjv (4.20) unstable; urgency=low
+
+  * Non-maintainer upload.
+  * Get rid of the /usr/doc link (Closes: #359367, #359369). 
+
+ -- Amaya Rodrigo Sastre <amaya@debian.org>  Wed, 12 Jul 2006 14:25:06 +0200
+
+bible-kjv (4.19) unstable; urgency=low
+
+  * Non-maintainer upload.
+  - Applied patch to fix FTBFS with gcc-4.0 from Andreas Jochens
+    <aj@andaco.de>. (closes: #292956)
+  - Changed build-dependency to libncurses5-dev since libncurses4-dev is no
+    longer available.
+
+ -- Rob Bradford <robster@debian.org>  Wed, 17 Aug 2005 21:36:05 +0100
+
+bible-kjv (4.18) unstable; urgency=high
+
+  * #include more header files (Closes: #291782)
+
+ -- Matthew Vernon <matthew@debian.org>  Sun, 23 Jan 2005 11:29:56 +0000
+	
+bible-kjv (4.17) unstable; urgency=high
+
+  * Remove -Wtraditional, since it behaves differently on newer versions
+    of gcc (Closes: #291750)
+
+ -- Matthew Vernon <matthew@debian.org>  Sat, 22 Jan 2005 23:34:15 +0000
+	
+bible-kjv (4.16) unstable; urgency=low
+
+  * Prototype the tsl functions properly
+  * Remove some nested comments
+  * Prototype all of bible.c, make main return int, etc.
+  * Remove unused rcs_ident variables from several places
+  * Move function prototypes into header files
+  * #include system headers where needed (string.h, unistd.h, etc)
+  * Return int for the length of uncompressed buffer not char
+  * Remove the one instance of writing over a string (Closes: #285505)
+  * Remove duplicate declarations of libc functions (Closes: #258508)
+  * Code is now much more like ANSI, less like K+R
+	
+ -- Matthew Vernon <matthew@debian.org>  Sat, 22 Jan 2005 19:03:01 +0000
+	
+bible-kjv (4.15) unstable; urgency=medium
+
+  * Use newer stdarg.h instead of varargs.h (Closes: #195193)
+  * Correct a few format-string errors
+  * Remove debian/substvars in debian/rules clean target
+
+ -- Matthew Vernon <matthew@debian.org>  Sat, 26 Jul 2003 10:28:31 +0100
+	
+bible-kjv (4.14) unstable; urgency=medium
+ 
+  * Fix prototype of main() in buildcmp.c, and cause it to return
+    correctly (Closes: #181986)
+
+ -- Matthew Vernon <matthew@debian.org>  Sat, 22 Feb 2003 15:45:01 +0000
+	
+bible-kjv (4.13) unstable; urgency=medium
+
+  * Make a couple of main()s return int (Closes: #178641)
+  * include <stdlib.h> for malloc() (Closes: #179292)
+
+ -- Matthew Vernon <matthew@debian.org>  Sat,  1 Feb 2003 02:47:32 +0000
+	
+bible-kjv (4.12) unstable; urgency=medium
+
+  * Correct the failure to comment some things out after #endif 
+    (Closes: #176998)
+
+ -- Matthew Vernon <matthew@debian.org>  Tue, 16 Jan 2003 14:31:04 +0000
+	
+bible-kjv (4.11) unstable; urgency=medium
+
+  * Turn makeindex2 into a bash script (Closes: #176550)
+
+ -- Matthew Vernon <matthew@debian.org>  Mon, 13 Jan 2003 17:35:32 +0000
+	
+bible-kjv (4.10) unstable; urgency=low
+
+  * Upstream have gone away, so take over this package
+  * Include the bible.rawtext file in the source distribution and fix the
+    brain-damage in the build system, so the data and concodence files are
+    generated at build-time (Closes: #175780)
+  * Fix typo in description (Closes: #124448)
+  * Standardise to loving-kindness, since that's in the OED and the BCP
+    (Closes: #120156) 
+
+ -- Matthew Vernon <matthew@debian.org>  Wed,  8 Jan 2003 16:46:20 +0000
+	
+bible-kjv (4.00-13) unstable; urgency=low
+
+  * Fixed bug in handling open-ended ranges (e.g. 4-); closes #152272
+  * Implemented readline() support. Closes: #152273
+    [Thanks to Daniel Martin <dtmartin2@earthlink.net> for the patches for
+    both those bugs.]
+  * Added Build-Depends line (dependency on libreadline4-dev).
+  * Updated standards version to 3.5.6
+
+ -- Oliver Elphick <olly@lfix.co.uk>  Mon,  8 Jul 2002 16:27:13 +0100
+
+bible-kjv (4.00-12) unstable; urgency=low
+
+  * Corrected bug in interpretation of "Phil" as Philippians - it was
+    losing the chapter number.  Closes: #96580
+  * bible-kjv now depneds on bible-kjv-text. Closes: #74621
+  * Changed all "long" decalarations to "int" to avoic problems on
+    Alpha.  Closes: #74910
+  * Changed '\?' to '?' in the man page.  Closes: #50122
+  * Added menu entry. Closes: #50123
+
+ -- Oliver Elphick <olly@lfix.co.uk>  Mon,  7 May 2001 07:58:42 +0100
+
+bible-kjv (4.00-11) unstable; urgency=low
+
+  * Changed section from misc to doc. (The override file already did
+    this.)
+
+ -- Oliver Elphick <olly@lfix.co.uk>  Mon, 22 Jan 2001 20:04:28 +0000
+
+bible-kjv (4.00-10) unstable; urgency=low
+
+  * Fixed bug in corcordance for unique references where no search range is
+    specified.  Closes: bug#63716
+
+ -- Oliver Elphick <Oliver.Elphick@lfix.co.uk>  Sun,  7 May 2000 17:50:15 +0100
+
+bible-kjv (4.00-9) frozen unstable; urgency=low
+
+  * Increased a buffer size which was causing very long verses to be truncated.
+    Closes: bug#53701
+
+ -- Oliver Elphick <Oliver.Elphick@lfix.co.uk>  Thu, 30 Dec 1999 17:38:18 +0000
+
+bible-kjv (4.00-8) unstable; urgency=low
+
+  * Moved randverse program from verse package into this one
+    Fixes bug#30863
+
+ -- Oliver Elphick <Oliver.Elphick@lfix.co.uk>  Sat, 19 Dec 1998 02:15:24 +0000
+
+bible-kjv (4.00-7) frozen unstable; urgency=low
+
+  * Edited manpage to change /usr/local/lib to /usr/lib. Fixes bug#22365.
+
+ -- Oliver Elphick <Oliver.Elphick@lfix.co.uk>  Tue, 12 May 1998 17:44:11 +0100
+
+bible-kjv (4.00-6) unstable; urgency=low
+
+  * Applied patch from James Troup <J.J.Troup@scm.brad.ac.uk> to make the
+    text package _properly_ architecture-independent. Fixes bug#17663
+  * Fixed syntax error in control file.
+
+ -- Oliver Elphick <Oliver.Elphick@lfix.co.uk>  Tue, 27 Jan 1998 22:56:08 +0000
+
+bible-kjv (4.00-5) unstable; urgency=low
+
+  * Split into bible-kjv-text and bible-kjv (static text and the program);
+    fixes bug#14838
+  * Uncompressed /usr/doc/bible-kjv/copyright;  fixes bug#14392
+
+ -- Oliver Elphick <Oliver.Elphick@lfix.co.uk>  Thu,  8 Jan 1998 22:48:54 +0000
+
+bible-kjv (4.00-4) unstable; urgency=low
+
+  * New maintainer
+
+ -- Oliver Elphick <Oliver.Elphick@lfix.co.uk>  Thu, 11 Dec 1997 17:35:24 +0000
+
+bible-kjv (4.00-3) unstable; urgency=low
+
+  * Build under hamm.
+  * Retake package since I am still listed as maintainer.
+
+ -- Christoph Lameter <clameter@debian.org>  Wed, 29 Oct 1997 16:04:45 -0800
+
+bible-kjv (4.00-2) unstable; urgency=low
+
+  * New maintainer
+  * removed outdated location for copyright file
+  * compressed docs and man pages
+
+ -- Dale Scheetz <dwarf@polaris.net>  Sat, 19 Oct 1996 17:01:32 -0400
+
+bible-kjv (4.00-1) unstable; urgency=high
+
+  * Initial Release
+
+ -- Christoph Lameter <clameter@debian.org>  Tue, 20 Sep 1996 14:51:46 +0800
+
+
+ 

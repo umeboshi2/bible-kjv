@@ -1,0 +1,440 @@
+
+bible-index.c,49
+int line_locator[5,77
+int max_line 3896,280325
+
+bible.c,849
+#define FALSE	151,5757
+#define TRUE	152,5775
+#define REFSZ 154,5793
+#define VSPECSZ 155,5814
+#define LINESZ 156,5834
+#define VBUFFSZ 157,5854
+static char rcs_ident[159,5877
+char *myname;162,6000
+int  mem_limit;163,6035
+int  pretty_printing=164,6093
+int  list_always=165,6145
+int  line_width=166,6201
+int  skip_inc=167,6259
+int  select_count=168,6316
+ref_t selectbuf[169,6385
+ref_t inrange_start=170,6442
+FILE *outf=172,6531
+char help_text[174,6568
+int do_concordance(205,8257
+cmd_ANDconcordance(257,9607
+cmd_ORconcordance(314,11043
+cmd_concordance(378,12710
+cmd_help(407,13302
+cmd_inrange(433,13885
+cmd_list(502,15843
+cmd_pretty_print(558,17085
+cmd_view(603,18226
+cmd_write(637,19055
+do_command(675,20004
+user_input(775,22469
+char *getprompt(822,23656
+usage(848,24269
+main(879,25136
+#define ARGVAL(ARGVAL917,26112
+
+brl-index.c,31
+static char rcs_ident[72,2741
+
+brl.c,540
+#define FALSE	158,6262
+static char rcs_ident[160,6281
+char *booknamestr[162,6401
+char *bookabbrvstr[232,7622
+ref_t brl_cur_vnum;302,8486
+char brl_textname[305,8605
+#define getnum(getnum322,9041
+int get_book(327,9139
+int verse_continuation(617,16843
+ref_t verse_id(681,18655
+ref_t brl_extract_num(789,21775
+ref_t verse_num(838,23304
+ref_t brl_verse_spec(879,24512
+int brl_getverse(936,25885
+ref_t brl_printverse(972,26786
+#define VBSIZE 1009,28094
+char* brl_num_to_ref(1107,30815
+brl_init(1139,31591
+brl_close(1175,32540
+
+buildcmp.c,192
+static char rcs_ident[63,2247
+struct tsl_fileheader fh;67,2374
+FILE *sf,68,2400
+FILE *sf, *df,68,2400
+FILE *sf, *df, *of;68,2400
+put_header(70,2462
+put_data(107,3486
+int main(114,3567
+
+compresslib.c,2358
+#define	min(min57,1827
+#define SACREDMEM	72,2228
+# define USERMEM 76,2272
+#define SIGNED_COMPARE_SLOW	80,2370
+# define BITS 84,2464
+# define NO_UCHAR	85,2521
+# define BITS 90,2682
+# define BITS 96,2787
+#  define PBITS	102,2891
+#   define PBITS	105,2953
+#    define PBITS	108,3018
+#     define PBITS	111,3085
+#     define PBITS	113,3117
+#  define BITS 123,3285
+# define HSIZE	128,3361
+# define HSIZE	131,3425
+# define HSIZE	134,3489
+# define HSIZE	137,3553
+# define HSIZE	140,3616
+#  define XENIX_16145,3791
+#   define BITS	148,3880
+typedef int		code_int;code_int156,4006
+typedef unsigned int count_int;count_int159,4057
+typedef unsigned short int count_short;count_short160,4089
+typedef int	  count_int;count_int162,4135
+ typedef char	char_type;char_type166,4184
+ typedef	unsigned char	char_type;char_type168,4215
+char_type magic_header[170,4268
+#define BIT_MASK	173,4363
+#define BLOCK_MASK	174,4385
+#define INIT_BITS 178,4526
+static char rcs_ident[181,4584
+#define ARGVAL(ARGVAL187,4774
+int n_bits;189,4828
+int maxbits 190,4869
+code_int maxcode;191,4927
+code_int maxmaxcode 192,4980
+# define MAXCODE(MAXCODE194,5087
+# define MAXCODE(MAXCODE196,5138
+count_int htab0[200,5226
+count_int htab1[201,5249
+count_int htab2[202,5272
+count_int htab3[203,5295
+count_int htab4[204,5318
+count_int htab5[205,5341
+count_int htab6[206,5364
+count_int htab7[207,5387
+count_int htab8[208,5410
+count_int * htab[209,5440
+#define htabof(htabof212,5531
+unsigned short code0tab[213,5581
+unsigned short code1tab[214,5613
+unsigned short code2tab[215,5645
+unsigned short code3tab[216,5677
+unsigned short code4tab[217,5709
+unsigned short * codetab[218,5741
+#define codetabof(codetabof221,5827
+count_int htab 224,5911
+unsigned short codetab 225,5935
+#define htabof(htabof226,5967
+#define codetabof(codetabof227,5993
+code_int hsize 229,6047
+char_type lmask[232,6117
+char_type rmask[233,6194
+#define tab_prefixof(tab_prefixof246,6713
+# define tab_suffixof(tab_suffixof248,6766
+# define de_stack	249,6834
+# define tab_suffixof(tab_suffixof251,6903
+# define de_stack	252,6953
+code_int free_ent 255,7033
+int block_compress 263,7221
+int clear_flg 264,7254
+#define FIRST	270,7401
+#define	CLEAR	271,7442
+cmp_init(275,7493
+cmp_checkheader(344,9716
+cmp_decompress(368,10206
+code_int getcode(489,13503
+
+makeconcfile.c,274
+#define FALSE	61,2235
+#define TRUE	62,2253
+static char rcs_ident[64,2271
+#define INDEXTMPF	66,2400
+#define DATATMPF	67,2429
+char *myname;69,2458
+struct tsl_conc_fileheader fh;92,3082
+int main(95,3115
+#define WRDSZ 126,3882
+outerr(373,11091
+print_header(380,11189
+
+makeindex.c,74
+#define  TBSIZE	79,2671
+static char rcs_ident[81,2694
+int main(84,2821
+
+squish.c,3448
+#define	min(min85,2725
+#define SACREDMEM	100,3126
+# define USERMEM 104,3170
+#define SIGNED_COMPARE_SLOW	108,3268
+# define BITS 112,3362
+# define NO_UCHAR	113,3419
+# define BITS 118,3580
+# define BITS 124,3685
+#  define PBITS	130,3789
+#   define PBITS	133,3851
+#    define PBITS	136,3916
+#     define PBITS	139,3983
+#     define PBITS	141,4015
+#  define BITS 151,4183
+# define HSIZE	156,4258
+# define HSIZE	159,4322
+# define HSIZE	162,4386
+# define HSIZE	165,4450
+# define HSIZE	168,4513
+#  define XENIX_16173,4688
+#   define BITS	176,4777
+typedef long int	code_int;code_int185,4917
+typedef int		code_int;code_int187,4950
+typedef unsigned long int count_int;count_int191,5008
+typedef unsigned short int count_short;count_short192,5045
+typedef long int	  count_int;count_int194,5091
+ typedef char	char_type;char_type198,5145
+ typedef	unsigned char	char_type;char_type200,5176
+char_type magic_header[202,5229
+#define BIT_MASK	205,5324
+#define BLOCK_MASK	206,5346
+#define INIT_BITS 210,5487
+static char rcs_ident[333,10867
+#define ARGVAL(ARGVAL342,11114
+int n_bits;344,11168
+int maxbits 345,11209
+code_int maxcode;346,11267
+code_int maxmaxcode 347,11320
+# define MAXCODE(MAXCODE349,11427
+# define MAXCODE(MAXCODE351,11478
+count_int htab0[355,11566
+count_int htab1[356,11589
+count_int htab2[357,11612
+count_int htab3[358,11635
+count_int htab4[359,11658
+count_int htab5[360,11681
+count_int htab6[361,11704
+count_int htab7[362,11727
+count_int htab8[363,11750
+count_int * htab[364,11780
+#define htabof(htabof367,11871
+unsigned short code0tab[368,11921
+unsigned short code1tab[369,11953
+unsigned short code2tab[370,11985
+unsigned short code3tab[371,12017
+unsigned short code4tab[372,12049
+unsigned short * codetab[373,12081
+#define codetabof(codetabof376,12167
+count_int htab 379,12251
+unsigned short codetab 380,12275
+#define htabof(htabof381,12307
+#define codetabof(codetabof382,12333
+code_int hsize 384,12387
+count_int fsize;385,12444
+#define tab_prefixof(tab_prefixof396,12885
+# define tab_suffixof(tab_suffixof398,12938
+# define de_stack	399,13006
+# define tab_suffixof(tab_suffixof401,13075
+# define de_stack	402,13125
+code_int free_ent 405,13205
+int exit_stat 406,13255
+int nomagic 409,13295
+int zcat_flg 410,13368
+int quiet 411,13434
+int piecesize 414,13547
+unsigned int mycheckpoint;415,13598
+int cpcnt 416,13625
+struct w_info w_info417,13670
+} *firstwin,421,13866
+} *firstwin, *curwin;421,13866
+int block_compress 428,14006
+int clear_flg 429,14039
+long int ratio 430,14058
+#define CHECK_GAP 431,14078
+count_int checkpoint 432,14129
+#define FIRST	437,14290
+#define	CLEAR	438,14331
+int force 440,14380
+char ofname 441,14395
+int verbose 443,14427
+int do_decomp 449,14512
+static int offset;453,14577
+long int in_count 454,14596
+long int bytes_out;455,14643
+long int out_count 456,14699
+Usage(459,14767
+int debug 463,14873
+main(504,16300
+compress(827,24842
+static char buf[1016,29852
+char_type lmask[1019,29888
+char_type rmask[1020,29965
+output(1023,30060
+decompress(1179,33729
+getcode(1270,35768
+rindex(1376,38460
+printcodes(1387,38631
+code_int sorttab[1416,39313
+dump_tab(1418,39373
+#define STACK_SIZE	1422,39455
+in_stack(1475,41002
+writeerr(1500,41724
+foreground(1511,41895
+onintr 1524,42081
+oops 1530,42136
+cl_block 1539,42312
+do_clearblock(1569,42958
+cl_hash(1588,43313
+prratio(1640,44263
+version(1658,44619
+
+tsl.c,812
+#    define SEEK_SET 119,4309
+#define FALSE	122,4357
+#define TRUE	123,4375
+static char rcs_ident[125,4393
+FILE *tfp;130,4546
+FILE *cfp;131,4588
+struct tsl_conc_fileheader cfh;132,4637
+char *cf_words;133,4699
+short int *cf_index;134,4756
+int tsl_wsize;135,4802
+int tsl_wnum;136,4845
+file_ptr_t *tsl_wtable=137,4885
+struct buffer_rec buffer_rec143,5076
+struct buffer_rec tsl_firstbuffer;149,5246
+struct buffer_rec tsl_lastbuffer;150,5308
+struct buffer_rec **tsl_wbuffers=151,5364
+char *tsl_cmpbuffer=156,5562
+int tsl_numbuffs;157,5628
+int tsl_maxbuffs;158,5683
+int tsl_maxbuffusage=159,5748
+void tsl_error(162,5817
+tsl_scan_concordance(192,6470
+int tsl_gettext(332,10326
+int tsl_printtext(366,11258
+tsl_textread(394,11886
+tsl_init(559,17483
+#define STRSZ 589,18373
+tsl_close(693,22029
+
+util.c,188
+static char rcs_ident[40,1238
+FILE *findfile(43,1360
+#define PATHSZ 63,1955
+void univ_assign(94,2648
+void shortuniv_assign(131,3528
+int univ2int(164,4394
+int shortuniv2int(191,4907
+
+brl-startchapter.h,25
+short start_chapter[1,0
+
+brl-startverse.h,23
+short start_verse[1,0
+
+brl.h,3002
+#define BADBOOK	54,1936
+#define NO_VERSE	55,1970
+enum books books57,2010
+enum books { GENESIS,57,2010
+enum books { GENESIS, EXODUS,57,2010
+enum books { GENESIS, EXODUS, LEVIT,57,2010
+enum books { GENESIS, EXODUS, LEVIT, NUM,57,2010
+enum books { GENESIS, EXODUS, LEVIT, NUM, DEUT,57,2010
+enum books { GENESIS, EXODUS, LEVIT, NUM, DEUT, JOSHUA,57,2010
+enum books { GENESIS, EXODUS, LEVIT, NUM, DEUT, JOSHUA, JUDGES,57,2010
+enum books { GENESIS, EXODUS, LEVIT, NUM, DEUT, JOSHUA, JUDGES, RUTH,57,2010
+	SAM1,58,2080
+	SAM1, SAM2,58,2080
+	SAM1, SAM2, KINGS1,58,2080
+	SAM1, SAM2, KINGS1, KINGS2,58,2080
+	SAM1, SAM2, KINGS1, KINGS2, CHRON1,58,2080
+	SAM1, SAM2, KINGS1, KINGS2, CHRON1, CHRON2,58,2080
+	SAM1, SAM2, KINGS1, KINGS2, CHRON1, CHRON2, EZRA,58,2080
+	SAM1, SAM2, KINGS1, KINGS2, CHRON1, CHRON2, EZRA, NEHEM,58,2080
+	SAM1, SAM2, KINGS1, KINGS2, CHRON1, CHRON2, EZRA, NEHEM, ESTHER,58,2080
+	JOB,59,2146
+	JOB, PSALMS,59,2146
+	JOB, PSALMS, PROV,59,2146
+	JOB, PSALMS, PROV, ECCL,59,2146
+	JOB, PSALMS, PROV, ECCL, SONG,59,2146
+	JOB, PSALMS, PROV, ECCL, SONG, ISAIAH,59,2146
+	JOB, PSALMS, PROV, ECCL, SONG, ISAIAH, JEREM,59,2146
+	JOB, PSALMS, PROV, ECCL, SONG, ISAIAH, JEREM, LAMENT,59,2146
+	EZEKIEL,60,2201
+	EZEKIEL, DANIEL,60,2201
+	EZEKIEL, DANIEL, HOSEA,60,2201
+	EZEKIEL, DANIEL, HOSEA, JOEL,60,2201
+	EZEKIEL, DANIEL, HOSEA, JOEL, AMOS,60,2201
+	EZEKIEL, DANIEL, HOSEA, JOEL, AMOS, OBADIAH,60,2201
+	EZEKIEL, DANIEL, HOSEA, JOEL, AMOS, OBADIAH, JONAH,60,2201
+	EZEKIEL, DANIEL, HOSEA, JOEL, AMOS, OBADIAH, JONAH, MICAH,60,2201
+	NAHUM,61,2261
+	NAHUM, HABAK,61,2261
+	NAHUM, HABAK, ZEPH,61,2261
+	NAHUM, HABAK, ZEPH, HAGGAI,61,2261
+	NAHUM, HABAK, ZEPH, HAGGAI, ZECH,61,2261
+	NAHUM, HABAK, ZEPH, HAGGAI, ZECH, MALACHI,61,2261
+	MATT,62,2305
+	MATT, MARK,62,2305
+	MATT, MARK, LUKE,62,2305
+	MATT, MARK, LUKE, JOHN,62,2305
+	MATT, MARK, LUKE, JOHN, ACTS,62,2305
+	MATT, MARK, LUKE, JOHN, ACTS, ROMANS,62,2305
+	MATT, MARK, LUKE, JOHN, ACTS, ROMANS, COR1,62,2305
+	MATT, MARK, LUKE, JOHN, ACTS, ROMANS, COR1, COR2,62,2305
+	MATT, MARK, LUKE, JOHN, ACTS, ROMANS, COR1, COR2, GAL,62,2305
+	MATT, MARK, LUKE, JOHN, ACTS, ROMANS, COR1, COR2, GAL, EPH,62,2305
+	PHILIP,63,2366
+	PHILIP, COLOS,63,2366
+	PHILIP, COLOS, THESS1,63,2366
+	PHILIP, COLOS, THESS1, THESS2,63,2366
+	PHILIP, COLOS, THESS1, THESS2, TIM1,63,2366
+	PHILIP, COLOS, THESS1, THESS2, TIM1, TIM2,63,2366
+	PHILIP, COLOS, THESS1, THESS2, TIM1, TIM2, TITUS,63,2366
+	PHILIP, COLOS, THESS1, THESS2, TIM1, TIM2, TITUS, PHILEM,63,2366
+	HEBREWS,64,2425
+	HEBREWS, JAMES,64,2425
+	HEBREWS, JAMES, PET1,64,2425
+	HEBREWS, JAMES, PET1, PET2,64,2425
+	HEBREWS, JAMES, PET1, PET2, JOHN1,64,2425
+	HEBREWS, JAMES, PET1, PET2, JOHN1, JOHN2,64,2425
+	HEBREWS, JAMES, PET1, PET2, JOHN1, JOHN2, JOHN3,64,2425
+	HEBREWS, JAMES, PET1, PET2, JOHN1, JOHN2, JOHN3, JUDE,64,2425
+	REV 65,2481
+extern short start_verse[68,2521
+extern short start_chapter[69,2549
+extern char brl_textname[72,2605
+extern ref_t brl_cur_vnum;73,2633
+
+tsl.h,559
+#define	TSL_MAGIC1	70,2560
+#define	TSL_MAGIC2	71,2622
+#define	TSL_CONCMAGIC1	72,2645
+#define	TSL_CONCMAGIC2	73,2711
+#define TSL_FVERSION1	74,2738
+#define TSL_FVERSION2	75,2799
+#define TSL_CONCFVERSION1 76,2825
+#define TSL_CONCFVERSION2 77,2890
+#define TSL_DESCRSZ	79,2921
+extern int line_locator[82,2993
+struct tsl_fileheader tsl_fileheader105,3749
+typedef int file_ptr_t;file_ptr_t135,4686
+typedef unsigned short ref_t;ref_t136,4739
+#define SELECTSZ 137,4802
+struct tsl_conc_fileheader tsl_conc_fileheader139,4870
+void tsl_error(152,5357
+
+util.h,152
+#define get_nonblank(get_nonblank33,983
+typedef unsigned char Univ_Int[Univ_Int41,1233
+typedef unsigned char Short_Univ_Int[Short_Univ_Int42,1314
+
+version.h,37
+static char release_version[66,2510

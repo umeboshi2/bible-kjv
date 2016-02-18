@@ -1,0 +1,195 @@
+#!/bin/bash
+###############################################################################
+#
+# File:         makeindex2
+# RCS:          $Header: /home/matthew/cvs/bible-kjv-4.10/makeindex2,v 2.2 2003/01/13 17:40:29 matthew Exp $
+# Description:  Create start_verse and start_chapter tables
+# Author:       Chip Chapin
+# Created:      Tue Jan  5 14:20:08 1993
+# Modified:     Tue Apr 27 12:30:49 1993 (Chip Chapin) chip@hpclbis
+# Language:     Sh
+# Package:      Text Storage Library (Bible Retrieval System)
+# Status:       Experimental (Do Not Distribute)
+#
+###############################################################################
+#
+# Revisions:
+# $Log: makeindex2,v $
+# Revision 2.2  2003/01/13 17:40:29  matthew
+# changed to #!/bin/bash, since that's in Debian's build-essential
+# whereas ksh isn't :)
+#
+# Revision 2.1  2003/01/08 16:06:25  matthew
+# create the vrs2num.index file earlier on so that the later routines do not barf
+#
+# Tue Apr 27 12:30:21 1993 (Chip Chapin) chip@hpclbis
+#  Use temp files and only create output files if successful.
+# Tue Jan  5 14:23:06 1993 (Chip Chapin) chip@hpclbis
+#  Initial creation, incorporating the scripts "vrs2num", "mkvstruct", 
+#  and "mkcstruct" from January 1989.  This is the first time I've had to
+#  rebuild these tables since then...
+#  Many changes to vrs2num, required by changes to rawtext format.
+#  Additional changes were required throughout to reflect small data structure 
+#  changes that had been made by hand.
+###############################################################################
+
+
+if [ $# -lt 1 ]; then
+    print "Usage: $0 datafile"
+    exit 1
+fi
+RAWDATA="$1"
+
+T1=brsA$$
+T2=brsB$$
+T3=brsC$$
+
+###############################################################################
+# vrs2num, January 21, 1989
+#
+# script to read bible text  and produce a list will specify
+# the absolute "verse number" from the start of the KJ text
+# for each Book:Chapter (zero-based).  Also records how many verses
+# are in each chapter.
+# Output is the following table:
+#
+# Book	Chapter	VrsNum	NumVerses
+# Gen   1       0	31
+# Gen   2       31	25
+# ....
+
+awk '
+    BEGIN { 
+	last_bc = "Ge1"; 
+	book = "Ge"; chap = 1;
+	start_absverse = 0; 
+    }
+    
+    {
+	# File starts with an info line. 
+	if ( split($1,p,":") < 2 ) next;
+
+	book_chap = p[1];
+	if (book_chap != last_bc) {
+	    # starting new chapter
+	    # Print info for last chapter.
+	    # Book -- Chapter -- Starting absverse -- Number of verses
+	    printf "%s\t%d\t%d\t%d\n", book, chap, start_absverse, nverses;
+
+            # Get ref without first character.  This avoids problems with
+	    # refs that start with a number, e.g. "1Ki1:1".
+	    # Then find out where the chapter number starts.
+	    # Finally, extract the book and chapter info.
+            tempbc = substr(book_chap, 2);
+	    n=match(tempbc, /[0-9]/);
+	    book = substr(book_chap, 1, n);
+	    chap = substr(book_chap, n+1);
+
+	    start_absverse = NR-2;  # Remember where we are now.
+				    # Lose one due to leading \n in file,
+				    # and one because we are zero-based.
+	    nverses = 0;
+	    last_bc = book_chap;
+	}
+	nverses++;		# Keep count of verses in chapter
+    }
+
+    END { # print the last chapter.  Might as well do this right.
+	printf "%s\t%d\t%d\t%d\n", book, chap, start_absverse, nverses;
+    }
+' "$RAWDATA" > $T1
+
+#Do this now, so we have a vrs2num.index to work from later.
+if [ -s "$T1" ]; then mv $T1 vrs2num.index     ; fi
+
+
+
+###############################################################################
+# mkvstruct, January 21, 1989
+#
+# Make verse structure -- creates the array that contains the 
+# "absolute verse number" (zero-based) for every CHAPTER in the Bible.
+# Uses the table "vrs2num" which we created earlier.
+#
+# This table gives the number of verses occuring in the Bible BEFORE
+# any particular chapter.  Gen 1 is "chapter 1", Gen 2 is "chapter 2"
+# etc.  Since there are no verses prior to Gen 1, start_verse[1] == 0.
+# start_verse[2] == 31 because there are 31 verses prior to Gen 2:1.
+#
+# Chip Chapin, 890114.
+#
+awk '
+    BEGIN {
+	FS="\t";
+	printf "short start_verse[]={ 0,";
+    }
+    {
+	if (chaps_printed % 10 == 0) printf "\n\t";
+	chaps_printed++;
+	printf "%s, ", $3;
+	nextone = $3 + $4
+    }
+    END {
+	printf "%d\n\t};\n", nextone ;
+    }
+' vrs2num.index > $T2 
+
+
+###############################################################################
+# mkcstruct, January 21, 1989
+# Adapted from mkvstruct
+#
+# Make chapter structure -- creates the array that contains the 
+# "absolute chapter number" (zero-based) for every BOOK in the Bible.
+# Uses the table "vrs2num" which we created earlier, and contains one
+# entry for each chapter in the Bible.  We wish to create a table that
+# can be indexed by BOOK (Genesis == 0, Revelation == 65) to determine
+# the number of chapters that precede that book in the Bible.
+# Our only purpose here is to create the appropriate C structure.
+#
+#    The start_chapter table is indexed by Bible BOOK (0..65) and
+#    gives the number of CHAPTERS in the whole Bible that precede that
+#    particular book.  Thus given the BOOK, CHAPTER, and VERSE for a
+#    reference, we can easily compute an absolute verse number for that
+#    reference as follows:
+#
+#	abs_verse = start_verse[ start_chapter[BOOK] + CHAPTER ] + VERSE
+#
+# Chip Chapin, 890114.
+
+awk '
+    BEGIN {
+	FS="\t";
+	printf "short start_chapter[]={";
+	books = 0;
+	last_book = "";
+    }
+    $1 != last_book {
+	if (books_printed % 10 == 0) printf "\n\t";
+	books_printed++;
+	printf "%d, ", NR-1;
+	last_book = $1;
+    }
+    END {
+	printf "%d\n\t};\n", NR ;
+    }
+' vrs2num.index > $T3
+
+# Have to do this earlier or the second two routines barf
+#if [ -s "$T1" ]; then mv $T1 vrs2num.index     ; fi
+if [ -s "$T2" ]; then mv $T2 brl-startverse.h  ; fi
+if [ -s "$T3" ]; then mv $T3 brl-startchapter.h; fi
+
+# end
+
+###############################################################################
+# Gnu Emacs variables...
+#
+#   Local Variables:
+#   mode:   	    	    	        sh
+#   eval:   	    	    	        (auto-fill-mode 0)
+#   default-header-comment-character:	?#
+#   header-prefix:			"#!/bin/ksh"
+#   header-suffix:			"#"
+#   header-comment-character:		?#
+#   end:
