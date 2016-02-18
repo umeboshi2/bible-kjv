@@ -41,8 +41,8 @@ binary-indep:	checkroot build
 	cp debian/copyright debian/bible-kjv-text/usr/share/doc/bible-kjv-text
 	cp debian/changelog debian/bible-kjv-text/usr/share/doc/bible-kjv-text/changelog
 	cp debian/text.readme debian/bible-kjv-text/usr/share/doc/bible-kjv-text/Debian.README
-	gzip --best debian/bible-kjv-text/usr/share/doc/bible-kjv-text/Debian.README
-	gzip --best debian/bible-kjv-text/usr/share/doc/bible-kjv-text/changelog
+	gzip --best -n debian/bible-kjv-text/usr/share/doc/bible-kjv-text/Debian.README
+	gzip --best -n debian/bible-kjv-text/usr/share/doc/bible-kjv-text/changelog
 	cd debian/tmp && \
 		mv `cat ../bible-kjv-text.files` ../bible-kjv-text/usr/lib
 	dpkg-gencontrol -pbible-kjv-text -Pdebian/bible-kjv-text -isp
@@ -80,9 +80,9 @@ binary-arch:	checkroot build
 	install -m 755 -d debian/tmp/usr/lib/menu
 	install -m 644 debian/menu     debian/tmp/usr/lib/menu/$(package)
 	chmod a+r debian/tmp/usr/share/doc/$(package)/*
-	gzip -9 debian/tmp/usr/share/doc/$(package)/*
+	gzip -9 -n debian/tmp/usr/share/doc/$(package)/*
 	gunzip -9 debian/tmp/usr/share/doc/$(package)/copyright.gz
-	gzip -9 debian/tmp/usr/share/man/man1/*
+	gzip -9 -n debian/tmp/usr/share/man/man1/*
 	cd debian/tmp && \
 		rm `cat ../bible-kjv-text.files`
 	dpkg-shlibdeps bible

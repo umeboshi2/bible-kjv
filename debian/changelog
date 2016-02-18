@@ -1,3 +1,9 @@
+bible-kjv (4.27) unstable; urgency=low
+
+  * Make build reproducible (patch from Chris Lamb) (Closes: #777294)
+
+ -- Matthew Vernon <matthew@debian.org>  Sun, 17 May 2015 13:44:48 +0100
+
 bible-kjv (4.26) unstable; urgency=low
 
   * add format strings to two *printf statements, patch from Andreas Moog
