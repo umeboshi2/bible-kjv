@@ -1,3 +1,9 @@
+bible-kjv (4.29) unstable; urgency=low
+
+  * Add mandatory build-{arch,indep} targets to debian/rules (Closes: #821966)
+
+ -- Matthew Vernon <matthew@debian.org>  Thu, 07 Jul 2016 08:23:41 +0100
+
 bible-kjv (4.28) unstable; urgency=low
 
   * patch from Adam Borowski to fix FTBFS on x32 (Closes: #700012)
