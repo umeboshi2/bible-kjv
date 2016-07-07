@@ -21,6 +21,10 @@ build:
 	cd debian && gcc -g -O2 -o randverse randverse.c
 	touch build
 
+build-arch: build
+
+build-indep: build
+
 clean:
 	$(checkdir)
 	-rm -f build
@@ -104,4 +108,4 @@ checkroot:
 	$(checkdir)
 	test root = "`whoami`"
 
-.PHONY: binary binary-arch binary-indep clean checkroot
+.PHONY: binary binary-arch binary-indep clean checkroot build-arch build-indep
