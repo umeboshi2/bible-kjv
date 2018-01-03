@@ -88,9 +88,9 @@ DESTMAN1      = $(DESTMAN)/man1
 
 # I use environment variables for these...
 #CFLAGS	      = -g
-CFLAGS	      = -Wall -Wformat -Werror -Wshadow -W -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wcast-align -Wcast-qual -Wbad-function-cast -Wpointer-arith -g2 -ggdb -DDESTLIB=\"$(DESTLIB)\"
+CFLAGS	      = -Wall -Wformat -Werror -Wshadow -W -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wcast-align -Wcast-qual -Wbad-function-cast -Wpointer-arith -g2 -DDESTLIB=\"$(DESTLIB)\" -I ../libs/include
 LDFLAGS       = 
-LDADD         = -lreadline
+LDADD         = -leditline
 
 # release directories.  Nobody should care about this but me
 FTPHOME	      = /mnt/ftp
@@ -101,7 +101,7 @@ NINSTPKGDIR   = $(NINSTDIR)/packages
 # This is only used by the author when making a new release ftp-able.
 INSTALL	      = .do cp
 
-LD	      = cc
+LD	      = $(CC)
 
 MAKEFILE      = Makefile
 

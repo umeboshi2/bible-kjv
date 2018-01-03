@@ -167,8 +167,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include <readline/readline.h>
-#include <readline/history.h>
+#include <editline.h>
+//#include <readline/history.h>
 #include "tsl.h"
 #include "brl.h"
 #include "version.h"
@@ -970,7 +970,7 @@ int main(int argc,char **argv)
       /* read from stdin */
       printf( "%s: %s\n", myname, release_version );
       printf( "Hit '?' for help.\n" );
-      rl_bind_key('\t', rl_insert);
+      //el_bind_key('\t', rl_insert);
       brl_printverse( def_verse, pretty_printing, line_width, outf );
       while((line = readline(getprompt())) != NULL) {
 	  user_input( line );
