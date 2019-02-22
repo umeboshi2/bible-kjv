@@ -88,8 +88,8 @@ DESTMAN1      = $(DESTMAN)/man1
 
 # I use environment variables for these...
 #CFLAGS	      = -g
-CFLAGS	      = -Wall -Wformat -Werror -Wshadow -W -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wcast-align -Wcast-qual -Wbad-function-cast -Wpointer-arith -g2 -DDESTLIB=\"$(DESTLIB)\" -I ../libs/include
-LDFLAGS       = 
+CFLAGS	      = -Wall -Wformat -Werror -Wshadow -W -Wmissing-declarations -Wmissing-prototypes -Wstrict-prototypes -Wcast-align -Wcast-qual -Wbad-function-cast -Wpointer-arith -g2 -DDESTLIB=\"$(DESTLIB)\" -I deps/libs/include
+LDFLAGS       = -L deps/libs/lib
 LDADD         = -leditline
 
 # release directories.  Nobody should care about this but me
